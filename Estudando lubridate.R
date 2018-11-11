@@ -20,6 +20,33 @@ today()
 # Data de hoje com as horas.
 now()
 
+# De uma data podemos esxtrair diversas informações.
+mydate <- ymd("1988-09-29")
+
+## extract year information
+year(mydate)
+
+## extract day of the month
+mday(mydate)
+
+## extract weekday information
+wday(mydate)
+
+## label with actual day of the week
+wday(mydate, label = TRUE)
+
+## how old is someone born on 30 de junho de 1959
+mydate <- ymd("1959-06-30")
+
+## subtract birthday from todays date
+age <- today() - mydate
+age
+
+## a duration object can get this information in years
+as.duration(age)
+
+
+
 # Diferença entre duas datas. O resultado é em dias. 
 today() - dmy("7/6/2018")
 dmy("9/6/1958") - dmy("30/6/1959")
@@ -91,4 +118,23 @@ sf(dmy("30/6/1959"))
 sf(mdy("setembro, 7 1999"))
 sf(dmy("7/9/1999"))
 
+# Avançando mais um pouco.
+# Essa função é bem legal. 
+library(nycflights13)
 
+flights %>% #pega o df flights
+  select(year, month, day) %>% # seleciona as colunas ano, mês e dia, que são apenas números.
+  mutate(departure = make_date(year, month, day)) # e cria a coluna da data.
+
+flights %>% #pega o df flights
+  select(year, month) %>% #  mas quer usar apenas as colunas ano e mês, que são apenas números.
+  mutate(departure = make_date(year, month)) # e cria a coluna da data.
+
+# diferenças de tempo.
+year("1985-05-04") - year("1988-09-29")
+month("1985-05-04") - month("1988-09-29")
+day("1985-05-04") - day("1988-09-29")
+
+# dia da semana de uma data
+qwe <-wday(ymd('1985-05-04'), label = TRUE, abbr = FALSE)
+qwe
