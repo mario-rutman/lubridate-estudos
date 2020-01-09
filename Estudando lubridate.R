@@ -21,6 +21,7 @@ dmy("12-mar-1964")
 dmy("12/março/1964")
 
 
+
 # Data de hoje.
 today()
 
@@ -64,12 +65,14 @@ today() - dmy("29/9/2008") # Quantos dias tem Alice.
 today() - dmy("11/2/2006") # Quantos dias tem Anita.
 today() - dmy("30/03/1967") # Quantos dias tem Maria.
 today() - dmy("30/6/1959") # Quantos dias tem Mário.
-dmy("29/9/2019") - today() # Quantos dias faltam para o aniversário da Alice.
+dmy("29/9/2020") - today() # Quantos dias faltam para o aniversário da Alice.
 
 # as.duration dá a diferença entre datas em segundos, 
 # e aproxima para a unidade conveniente.  
 as.duration(today() - dmy("30/06/1959"))
-as.duration(today() - dmy("15/07/2019")) # tempo que falta para a viagem a Londres.
+
+# tempo que falta para a viagem a Londres.
+as.duration(today() - dmy("15/07/2019")) 
 
 
 as.duration(today() - ymd("1967-03-30"))
@@ -149,12 +152,24 @@ day("1985-05-04") - day("1988-09-29")
 # dia da semana de uma data. 
 # Como fiz o Sys.setlocale("LC_ALL", "pt_BR.UTF-8") o resultado é em português.
 wday(ymd('1985-05-04'), label = TRUE, abbr = FALSE)
-wday(ymd('1967-03-30'), label = TRUE, abbr = FALSE) # dia da semana que Maria nasceu.
+wday(ymd('1967-03-30'), label = TRUE, abbr = TRUE) # dia da semana que Maria nasceu.
 wday(ymd('2006-02-11'), label = TRUE, abbr = FALSE) # dia da semana que Anita nasceu.
-wday(ymd('2007-09-29'), label = TRUE, abbr = FALSE) # dia da semana que Alice nasceu.
+wday(ymd('2007-09-29'), label = TRUE, abbr = TRUE) # dia da semana que Alice nasceu.
 wday(ymd('1959-06-30'), label = TRUE, abbr = FALSE) # dia da semana que Mário nasceu.
 
 #
 #
 time_length(difftime(as.Date("2003-04-05"), as.Date("2001-01-01")), "years")
 time_length(difftime(Sys.time(), as.Date("2006-11-02")), "years")
+
+# Lubridate provides similar functions, but easier to understand
+now() # equivalent to Sys.time()
+floor_date(now(), unit = "month") # round down
+floor_date(now(), unit = "year")
+
+round_date(now(), unit = "hour") # round to nearest unit
+
+ceiling_date(now(), unit = "minutes") # round up
+
+# git config user.name "UserName"
+# git config user.email "email@domain.com"
